@@ -1,16 +1,9 @@
-class Background {
+class Background extends Drawable {
   constructor(ctx) {
-    this.ctx = ctx
-
-    this.w = this.ctx.canvas.width
-    this.h = this.ctx.canvas.height
-    this.x = 0
-    this.y = 0
-    this.vx = -1
-    this.vy = 0
-
+    super(ctx, 0, 0, ctx.canvas.width, ctx.canvas.height, -1, 0, 0, 0)
+    
     this.img = new Image()
-    this.img.src = 'https://www.vbforums.com/attachment.php?attachmentid=113103&d=1398112502'
+    this.img.src = './assets/img/fondo_ladrillos.jpg' // relative path from the index.html
   }
 
   draw() {
@@ -19,26 +12,12 @@ class Background {
   }
 
   move() {
-    this.x += this.vx
-    this.y += this.vy
+    super.move()
 
     if (this.x <= -this.w) {
       this.x = 0
     }
   }
-
-  // onKeyDown(key) {
-	// 	if (key === 39) {
-	// 		this.vx = -5
-	// 	} else if (key === 37) {
-	// 		this.vx = 5
-	// 	} 
-	// }
-
-	// onKeyUp (key) {
-	// 	if (key === 39 || key === 37) {
-	// 		this.vx = 0
-	// 	}
-	// }
-
 }
+
+

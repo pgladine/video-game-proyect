@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./assets/styles/style.css" rel="stylesheet" type="text/css" />
-  <title>Mario proyect</title>
-</head>
-<body>
-  <div class="container">
-    <canvas id="game" width="600px" height="350px">
-  </div> 
-  <script src="./assets/js/models/constants/constants.js"></script>
-  <script src="./assets/js/models/background/background.js"></script>
-  <script src="./assets/js/models/tools/bullet.js"></script>
-  <script src="./assets/js/models/characters/mario.js"></script>
-  <script src="./assets/js/models/game/game.js"></script>
-  <script src="./assets/js/index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./assets/styles/style.css" rel="stylesheet" type="text/css" />
+    <title>Mario proyect</title>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="game" width="600px" height="350px"></canvas>
+      <div class="status-bar">
+        <span>x05</span><span>x035</span><span>x02</span><span>T345</span>
+      </div>
+      <div id="mario"></div>
+    </div>
+    <script src="./assets/js/models/constants/constants.js"></script>
+    <script src="./assets/js/models/base-classes/drawable.js"></script>
+    <script src="./assets/js/models/background/background.js"></script>
+    <script src="./assets/js/models/tools/wasteBin.js"></script>
+    <script src="./assets/js/models/tools/bullet.js"></script>
+    <script src="./assets/js/models/characters/turtle.js"></script>
+    <script src="./assets/js/models/characters/mario.js"></script>
+    <script src="./assets/js/models/tools/graffiti-frame.js"></script>
+    <script src="./assets/js/models/game/game.js"></script>
+    <script src="./assets/js/index.js"></script>
+  </body>
 </html>

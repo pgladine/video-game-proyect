@@ -4,14 +4,31 @@ html, body {
   margin: 0;
   padding: 0;
   background: black;
+  display: flex;
+  justify-content: center;
+  color: white;
 }
 
 .container {
   text-align: center;
   padding: 20px;
+  width: 350px;
 }
 
 canvas {
   border: 1px solid white;
   border-radius: 4px;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+#mario {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
 }

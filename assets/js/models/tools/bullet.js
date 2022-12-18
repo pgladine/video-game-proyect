@@ -1,31 +1,21 @@
-class Bullet {
+class Bullet extends Drawable {
   constructor(ctx, x, y) {
-    this.bulletContext = ctx
+    super(ctx, x, y, null, null, 10, 0, 0, 0.5)
 
-    this.x = x
-    this.y = y
     this.r = 5
-    this.vx = 10
-    this.vy = 0
-    this.ax = 0
-    this.ay = 0.5
-
   }
 
   draw() {
-    this.bulletContext.beginPath()
-    this.bulletContext.arc(this.x, this.y, this.r, 0, 2 * Math.PI)
-    this.bulletContext.fill()
-    this.bulletContext.closePath()
+    this.ctx.beginPath()
+    this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI)
+    this.ctx.fill()
+    this.ctx.closePath()
   }
 
   move() {
-    this.vx += this.ax
-    this.vy += this.ay
-    this.x += this.vx
-    this.y += this.vy
+    super.move()
 
-    if (this.y > 320) {
+    if (this.y > FLOOR_POSITION) {
       this.vy *= -1
     }
   }
