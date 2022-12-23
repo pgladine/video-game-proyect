@@ -13,15 +13,12 @@ class Mario extends Drawable {
     this.img.frameIndex = 0
     this.tick = 0
 
-    this.graffiti1 = new Image()
-    this.graffiti1.src = 'https://www.viaempresa.cat/uploads/s1/26/09/64/66/reproduccio-de-girl-with-a-balloon-de-banksy.jpeg'
-    this.graffiti2 = new Image()
-    this.graffiti2.src = 'https://static.posters.cz/image/750/poster/banksy-street-art-graffiti-throwing-flow-i119985.jpg'
-    this.graffiti3 = new Image()
-    this.graffiti3.src = 'https://cdn-media.italiani.it/site-verona/sites/64/2022/04/Banksy-01.jpg'
-    this.graffitis = [this.graffiti1, this.graffiti2, this.graffiti3]
+    this.graffitis = [graffiti1, graffiti2, graffiti3]
 
     this.bullets = []
+
+    this.spraysToUse = 0
+
   }
 
   draw() {
@@ -57,7 +54,7 @@ class Mario extends Drawable {
   move() {
     super.move()
 
-    if(this.ay && this.y >= this.floor) {
+    if (this.ay && this.y >= this.floor) {
       this.y = this.floor
       this.vy = 0
       this.y0Top = FLOOR_TOP
@@ -69,7 +66,7 @@ class Mario extends Drawable {
       this.y = this.y0Bottom
     }
 
-    if (this.y <= this.y0Top ) {
+    if (this.y <= this.y0Top) {
       this.vy = 0
       this.y = this.y0Top
     }
@@ -84,7 +81,7 @@ class Mario extends Drawable {
       this.x = this.ctx.canvas.width - this.w
     }
 
-    this.bullets.forEach(b => b.move())    
+    this.bullets.forEach(b => b.move())
   }
 
   jump() {
@@ -97,7 +94,7 @@ class Mario extends Drawable {
   }
 
   chooseGraffiti() {
-    const randomIndex = Math.floor(Math.random() * this.graffitis.length)
+    const randomIndex = randomNum(this.graffitis.length)
     return this.graffitis[randomIndex]
   }
 
@@ -107,5 +104,23 @@ class Mario extends Drawable {
     const bullet = new Bullet(this.ctx, x, y)
     this.bullets.push(bullet)
   }
+
+  hasCollisionWith(item) {
+    const colX = (this.x + this.w) >= item.x && (item.x + item.w) >= this.x
+    const colY = (item.y + item.h) >= this.y && (this.y + this.h) >= item.y
+
+    return colX && colY
+  }
+
+  // catchSpray() {
+  //   const sprayCans = []
+    
+  //   const x = this.x + this.w
+  //   const y = this.y + this.h / 2
+  //   this.game.sprayCan.vy = 0
+  //   this.game.sprayCan.ay = 0
+  //   this.game.sprayCan.x = x
+  //   this.game.sprayCan.y = y
+  // }
 
 }

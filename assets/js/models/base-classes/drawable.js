@@ -19,4 +19,11 @@ class Drawable {
     this.x += this.vx
     this.y += this.vy
   }
+
+  isVisible() {
+    return this.x + this.w >= 0 &&
+      this.x <= this.ctx.canvas.width && 
+      this.y + this.h >= 0 &&
+      this.y <= this.ctx.canvas.height
+  }
 }

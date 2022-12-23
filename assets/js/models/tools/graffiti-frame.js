@@ -1,6 +1,6 @@
 class GraffitiFrame extends Drawable {
   constructor(ctx, x, y) {
-    super(ctx, x, y, 60, 60, 0, 0, 0, 0)
+    super(ctx, x, y, 240, 180, 0, 0, 0, 0)
     
     this.img = null
   }

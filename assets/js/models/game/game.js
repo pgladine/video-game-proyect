@@ -5,11 +5,11 @@ class Game {
     this.interval = null
     this.bg = new Background(ctx)
     this.mario = new Mario(ctx)
-    window.mario = this.mario
     this.turtles = []
     this.graffitiFrames = []
     this.wasteBin = new WasteBin(ctx, 500, 200)
-    this.tick = 10 * 5
+    this.tick = 100
+    this.sprayCans = []
   }
 
   start() {
@@ -25,8 +25,9 @@ class Game {
       this.draw()
       this.checkCollisions()
       this.move()
-      // this.addTurtle()
-    }, 1000 / 20)
+      this.addTurtle()
+      this.addSpray()
+    }, 1000 / 60)
   }
 
   stop() {
@@ -92,20 +93,23 @@ class Game {
     this.graffitiFrames.forEach(g => g.draw())
     this.turtles.forEach(t => t.draw())
     this.mario.draw()
+    this.sprayCans.forEach(s => s.draw())
     this.mario.bullets.forEach(b => b.draw())
     this.wasteBin.draw()
 
-    document.querySelector("#mario").innerText = `
-    y: ${this.mario.y} 
-    vy: ${this.mario.vy}
-    ay: ${this.mario.ay}
-    floor ${this.mario.floor}
-    `
+
+    // document.querySelector("#mario").innerText = `
+    // y: ${this.mario.y} 
+    // vy: ${this.mario.vy}
+    // ay: ${this.mario.ay}
+    // floor ${this.mario.floor}
+    // `
   }
 
   move() {
     // this.bg.move()
     this.mario.move()
+    this.sprayCans.forEach(s => s.move())
     this.turtles.forEach(t => t.move())
   }
 
@@ -118,53 +122,56 @@ class Game {
     )
 
     this.turtles = this.turtles.filter(t => t.isVisible())
+
+    this.sprayCans = this.sprayCans.filter(s => s.isVisible())
   }
 
   paintGraffiti() {
     this.graffitiFrames.forEach(graffitiFrame => {
-      if (this.checkGraffitiCollision(graffitiFrame)) {
+      if (this.mario.hasCollisionWith(graffitiFrame) && this.mario.spraysToUse > 0) {
         graffitiFrame.setImage(this.mario.chooseGraffiti())
-      }
+        this.mario.spraysToUse--
+      } 
     })
   }
 
   addGraffitiFrame() {
-    const xPositions = [150, 300, 450]
-    this.graffitiFrames.push(new GraffitiFrame(this.ctx, xPositions[this.graffitiFrames.length], 80))
+    const xPositions = [30, 330]
+    const yPositions = []
+    this.graffitiFrames.push(new GraffitiFrame(this.ctx, xPositions[this.graffitiFrames.length], 20))
   }
 
   addTurtle() {
     this.tick--
 
     if (this.tick <= 0) {
-      this.tick = 200 + Math.random() * 40
       this.turtles.push(new Turtle(this.ctx))
+      this.tick = 600 + randomNum(40)
+    }
+  }
+
+  addSpray() {
+    this.tick--
+
+    if (this.tick <= 0) {
+      this.sprayCans.push(new SprayCan(this.ctx, randomNum(this.ctx.canvas.width)))
+      this.tick = 250 + randomNum(100)
     }
   }
 
   checkCollisions() {
-    const m = this.mario
-
     this.turtles.forEach(t => {
-      const colX = (m.x + m.w) >= t.x && (t.x + t.w) >= m.x
-      const colY = (t.y + t.h) >= m.y && (m.y + m.h) >= t.y
-
-      if (colX && colY) {
+      if (this.mario.hasCollisionWith(t)) {
         this.gameOver()
-        // m.vx = 0
-        // m.y = t.y - m.h
-        // m.vy = 0
       }
     })
-  }
 
-  checkGraffitiCollision(graffitiFrame) {
-    const mario = this.mario
-
-    const colX = (mario.x + mario.w) >= graffitiFrame.x && (graffitiFrame.x + graffitiFrame.w) >= mario.x
-    const colY = (graffitiFrame.y + graffitiFrame.h) >= mario.y && (mario.y + mario.h) >= graffitiFrame.y
-
-    return colX && colY
+    this.sprayCans.forEach(s => {
+      if (this.mario.hasCollisionWith(s)) {
+        s.y = this.ctx.canvas.height 
+        this.mario.spraysToUse++
+      }
+    })
   }
 
   gameOver() {
