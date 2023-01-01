@@ -13,7 +13,7 @@ class Mario extends Drawable {
     this.img.frameIndex = 0
     this.tick = 0
 
-    this.graffitis = [graffiti1, graffiti2, graffiti3]
+    this.graffitis = [graffiti1, graffiti2, graffiti3, graffiti4, graffiti5, graffiti6]
 
     this.bullets = []
 
@@ -86,7 +86,7 @@ class Mario extends Drawable {
 
   jump() {
     if (this.ay === 0) {
-      this.vy = -12
+      this.vy = -13
       this.ay = 0.5
       this.y0Top = 0
       this.floor = this.y
@@ -112,15 +112,12 @@ class Mario extends Drawable {
     return colX && colY
   }
 
-  // catchSpray() {
-  //   const sprayCans = []
-    
-  //   const x = this.x + this.w
-  //   const y = this.y + this.h / 2
-  //   this.game.sprayCan.vy = 0
-  //   this.game.sprayCan.ay = 0
-  //   this.game.sprayCan.x = x
-  //   this.game.sprayCan.y = y
-  // }
+  hasHandCollisionWith(item) {
+    const colX = (this.x + this.w) > item.x && (this.x + this.w) < (item.x + item.w)
+    const colY = (this.y + this.h / 2) > item.y && (this.y + this.h / 2) < (item.y + item.h)
+   
+    return colX && colY
+  }
+
 
 }

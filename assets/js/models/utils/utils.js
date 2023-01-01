@@ -11,11 +11,17 @@ const FLOOR_TOP = 215
 // Mario constants
 
 const graffiti1 = new Image()
-graffiti1.src = 'https://www.viaempresa.cat/uploads/s1/26/09/64/66/reproduccio-de-girl-with-a-balloon-de-banksy.jpeg'
+graffiti1.src = './assets/img/kid-1-1.png'
 const graffiti2 = new Image()
-graffiti2.src = 'https://static.posters.cz/image/750/poster/banksy-street-art-graffiti-throwing-flow-i119985.jpg'
+graffiti2.src = './assets/img/kid-1-2.png'
 const graffiti3 = new Image()
-graffiti3.src = 'https://cdn-media.italiani.it/site-verona/sites/64/2022/04/Banksy-01.jpg'
+graffiti3.src = './assets/img/kid-2-1.png'
+const graffiti4 = new Image()
+graffiti4.src = './assets/img/kid-2-2.png'
+const graffiti5 = new Image()
+graffiti5.src = './assets/img/kid-3-1.png'
+const graffiti6 = new Image()
+graffiti6.src = './assets/img/kid-3-2.png'
 
 // functions
 

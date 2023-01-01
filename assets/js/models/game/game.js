@@ -5,11 +5,12 @@ class Game {
     this.interval = null
     this.bg = new Background(ctx)
     this.mario = new Mario(ctx)
-    this.turtles = []
+    this.polices = []
     this.graffitiFrames = []
     this.wasteBin = new WasteBin(ctx, 500, 200)
     this.tick = 100
     this.sprayCans = []
+    this.paintedParts = 0
   }
 
   start() {
@@ -17,15 +18,13 @@ class Game {
     this.initListeners()
 
     this.addGraffitiFrame()
-    this.addGraffitiFrame()
-    this.addGraffitiFrame()
 
     this.interval = setInterval(() => {
       this.clear()
       this.draw()
-      this.checkCollisions()
       this.move()
-      this.addTurtle()
+      this.checkCollisions()
+      this.addPolice()
       this.addSpray()
     }, 1000 / 60)
   }
@@ -62,7 +61,6 @@ class Game {
         if (this.mario.ay === 0) {
           this.mario.vy = 5
         }
-        // this.mario.shoot()
         break;
       case SPACE:
         this.mario.jump()
@@ -91,7 +89,7 @@ class Game {
   draw() {
     this.bg.draw()
     this.graffitiFrames.forEach(g => g.draw())
-    this.turtles.forEach(t => t.draw())
+    this.polices.forEach(t => t.draw())
     this.mario.draw()
     this.sprayCans.forEach(s => s.draw())
     this.mario.bullets.forEach(b => b.draw())
@@ -110,7 +108,7 @@ class Game {
     // this.bg.move()
     this.mario.move()
     this.sprayCans.forEach(s => s.move())
-    this.turtles.forEach(t => t.move())
+    this.polices.forEach(t => t.move())
   }
 
   clear() {
@@ -121,31 +119,43 @@ class Game {
       this.ctx.canvas.height
     )
 
-    this.turtles = this.turtles.filter(t => t.isVisible())
+    this.polices = this.polices.filter(t => t.isVisible())
 
     this.sprayCans = this.sprayCans.filter(s => s.isVisible())
   }
 
   paintGraffiti() {
     this.graffitiFrames.forEach(graffitiFrame => {
-      if (this.mario.hasCollisionWith(graffitiFrame) && this.mario.spraysToUse > 0) {
-        graffitiFrame.setImage(this.mario.chooseGraffiti())
+      if (this.mario.hasHandCollisionWith(graffitiFrame) && this.mario.spraysToUse > 0 && graffitiFrame.img === null) {
+        graffitiFrame.setImage()
         this.mario.spraysToUse--
-      } 
+        this.paintedParts++
+        this.updateSprays()
+      }
     })
+    if (this.paintedParts === 6) {
+      this.youWin()
+    }
   }
 
   addGraffitiFrame() {
-    const xPositions = [30, 330]
-    const yPositions = []
-    this.graffitiFrames.push(new GraffitiFrame(this.ctx, xPositions[this.graffitiFrames.length], 20))
+    const positions = [
+      { x: 220, y: 20 },
+      { x: 300, y: 20 },
+      { x: 220, y: 100 },
+      { x: 300, y: 100 },
+      { x: 220, y: 180 },
+      { x: 300, y: 180 },
+    ]
+
+    this.graffitiFrames = positions.map(position => new GraffitiFrame(this.ctx, position.x, position.y))
   }
 
-  addTurtle() {
+  addPolice() {
     this.tick--
 
     if (this.tick <= 0) {
-      this.turtles.push(new Turtle(this.ctx))
+      this.polices.push(new Police(this.ctx))
       this.tick = 600 + randomNum(40)
     }
   }
@@ -155,12 +165,12 @@ class Game {
 
     if (this.tick <= 0) {
       this.sprayCans.push(new SprayCan(this.ctx, randomNum(this.ctx.canvas.width)))
-      this.tick = 250 + randomNum(100)
+      this.tick = 25 + randomNum(100)
     }
   }
 
   checkCollisions() {
-    this.turtles.forEach(t => {
+    this.polices.forEach(t => {
       if (this.mario.hasCollisionWith(t)) {
         this.gameOver()
       }
@@ -168,10 +178,20 @@ class Game {
 
     this.sprayCans.forEach(s => {
       if (this.mario.hasCollisionWith(s)) {
-        s.y = this.ctx.canvas.height 
+        s.y = this.ctx.canvas.height
         this.mario.spraysToUse++
       }
+      this.updateSprays()
     })
+  }
+
+  updateSprays() {
+    const totalSprays = document.querySelector('.sprays');
+    if (this.mario.spraysToUse < 10) {
+      totalSprays.innerText = `x0${this.mario.spraysToUse}`
+    } else {
+      totalSprays.innerText = `x${this.mario.spraysToUse}`
+    }
   }
 
   gameOver() {
@@ -179,6 +199,13 @@ class Game {
       this.stop()
       alert('GAME OVER')
     }, 0)
+  }
+
+  youWin() {
+    setTimeout(() => {
+      this.stop()
+      alert('YOU WIN')
+    }, 19)
   }
 
 }

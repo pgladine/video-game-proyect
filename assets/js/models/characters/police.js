@@ -1,4 +1,4 @@
-class Turtle extends Drawable {
+class Police extends Drawable {
   constructor(ctx) {
     super(ctx, 550, 0, 50, 90, -2, 0, 0, 0.5)
 

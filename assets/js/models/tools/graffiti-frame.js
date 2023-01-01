@@ -1,7 +1,7 @@
 class GraffitiFrame extends Drawable {
   constructor(ctx, x, y) {
-    super(ctx, x, y, 240, 180, 0, 0, 0, 0)
-    
+    super(ctx, x, y, 80, 80, 0, 0, 0, 0)
+
     this.img = null
   }
 
@@ -13,8 +13,25 @@ class GraffitiFrame extends Drawable {
     }
   }
 
-  setImage(image) {
-    this.img = image
+  setImage() {
+    if (this.x === 220 && this.y === 20) {
+      this.img = graffiti1
+    }
+    if (this.x === 300 && this.y === 20) {
+      this.img = graffiti2
+    }
+    if (this.x === 220 && this.y === 100) {
+      this.img = graffiti3
+    }
+    if (this.x === 300 && this.y === 100) {
+      this.img = graffiti4
+    }
+    if (this.x === 220 && this.y === 180) {
+      this.img = graffiti5
+    }
+    if (this.x === 300 && this.y === 180) {
+      this.img = graffiti6
+    }
   }
 
 }
