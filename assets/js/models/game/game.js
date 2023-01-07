@@ -7,19 +7,19 @@ class Game {
     this.mario = new Mario(ctx)
     this.polices = []
     this.graffitiFrames = []
-    this.clouds = []
+    this.sprayClouds = []
     this.wasteBin = new WasteBin(ctx, 500, 200)
     this.tick = 100
     this.sprayCans = []
     this.paintedParts = 0
+
+    this.gameAudio = new Audio("./assets/audios/sara-socas.mp3")
+    this.youWinAudio = new Audio("./assets/audios/fresh-prince.mp3")
+    this.gameOverAudio = new Audio("./assets/audios/massive-attack.mp3")
+  
   }
 
-  start() {
-    this.stop()
-    this.initListeners()
-
-    this.addGraffitiFrame()
-
+  beginInterval() {
     this.interval = setInterval(() => {
       this.clear()
       this.draw()
@@ -29,9 +29,18 @@ class Game {
     }, 1000 / 60)
   }
 
+  start() {
+    this.stop()
+    this.initListeners()
+    this.gameAudio.play()
+    this.gameAudio.currentTime = 
+
+    this.addGraffitiFrame()
+    this.beginInterval()
+  }
+
   stop() {
     clearInterval(this.interval)
-
   }
 
   initListeners() {
@@ -89,17 +98,17 @@ class Game {
   draw() {
     this.bg.draw()
     this.graffitiFrames.forEach(g => g.draw())
-    this.clouds.forEach(c => c.draw())
-    this.polices.forEach(t => t.draw())
     this.mario.draw()
-    this.sprayCans.forEach(s => s.draw())
     this.wasteBin.draw()
+    this.polices.forEach(p => p.draw())
+    this.sprayClouds.forEach(c => c.draw())
+    this.sprayCans.forEach(s => s.draw())
   }
 
   move() {
     this.mario.move()
     this.sprayCans.forEach(s => s.move())
-    this.polices.forEach(t => t.move())
+    this.polices.forEach(p => p.move())
   }
 
   clear() {
@@ -110,7 +119,7 @@ class Game {
       this.ctx.canvas.height
     )
 
-    this.polices = this.polices.filter(t => t.isVisible())
+    this.polices = this.polices.filter(p => p.isVisible())
 
     this.sprayCans = this.sprayCans.filter(s => s.isVisible())
   }
@@ -118,9 +127,9 @@ class Game {
   paintGraffiti() {
     this.graffitiFrames.forEach(graffitiFrame => {
       if (this.mario.hasHandCollisionWith(graffitiFrame) && this.mario.spraysToUse > 0 && graffitiFrame.img === null) {
-        this.clouds.push(new Cloud(this.ctx, graffitiFrame.x - 10, graffitiFrame.y - 10))
+        this.sprayClouds.push(new SprayCloud(this.ctx, graffitiFrame.x - 10, graffitiFrame.y - 10))
         setTimeout(() => {
-          this.clouds.pop()
+          this.sprayClouds.pop()
           graffitiFrame.setImage()
         }, 400)
         this.mario.spraysToUse--
@@ -174,9 +183,14 @@ class Game {
         this.gameOver()
       }
       if (this.mario.hasCollisionWith(p) && this.mario.spraysToUse > 0) {
+        this.stop()
+        p.yell()
         this.mario.spraysToUse = 0
         this.updateSprays()
-        p.x = p.x - 100
+        setTimeout(() => {
+          p.x = p.x - 100
+          this.beginInterval()
+        }, 2000)
       }
     })
 
@@ -201,6 +215,8 @@ class Game {
   gameOver() {
     setTimeout(() => {
       this.stop()
+      this.gameAudio.pause()
+      this.gameOverAudio.play()
       showGameOverScreen()
     }, 0)
   }
@@ -208,6 +224,8 @@ class Game {
   youWin() {
     setTimeout(() => {
       this.stop()
+      this.gameAudio.pause()
+      this.youWinAudio.play()
       showYouWinScreen()
     }, 700)
   }

@@ -1,8 +1,9 @@
 @font-face {
   font-family: AttackGraffiti;
-  src: url('./fonts/AttackGraffiti.ttf');
+  src: url("./fonts/AttackGraffiti.ttf");
 }
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -17,50 +18,51 @@ html, body {
   text-align: center;
   padding: 20px;
   width: 600px;
+  position: relative;
 }
 
 .home-screen {
-  width: 600px; 
+  width: 600px;
   height: 350px;
   border: 1px solid white;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
-  background-image: url('../img/colorful-brick-wall.webp');
-  background-size:cover;
+  justify-content: center;
+  background-image: url("../img/colorful-brick-wall.webp");
+  background-size: cover;
   background-position: center;
- }
+}
 
- .you-win-screen {
-  width: 600px; 
+.you-win-screen {
+  width: 600px;
   height: 350px;
   border: 1px solid white;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   position: absolute;
- }
+}
 
- .game-over-screen {
-  width: 600px; 
+.game-over-screen {
+  width: 600px;
   height: 350px;
   border: 1px solid white;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   position: absolute;
- }
+}
 
- h1 {
+h1 {
   margin-top: 0;
   font-family: AttackGraffiti, Arial, Helvetica, sans-serif;
-  color: #88ff22; 
+  color: #88ff22;
   font-size: 5rem;
   font-weight: 100;
   text-shadow: -5px 3px #ff2299;
@@ -68,7 +70,7 @@ html, body {
   color: #FF5525;
   text-shadow: -5px 3px #222222; 
   */
- }
+}
 
 .start-btn {
   width: 10rem;
@@ -83,6 +85,9 @@ canvas {
 .status-bar {
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
 }
 
 .spray-img {
@@ -93,11 +98,11 @@ canvas {
 .sprays {
   margin-left: 0.5rem;
   font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  text-shadow: 0 0 2px red;
 }
 
 .hide-element {
   display: none;
 }
-
-
-

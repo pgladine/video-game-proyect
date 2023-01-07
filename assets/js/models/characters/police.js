@@ -9,7 +9,7 @@ class Police extends Drawable {
     // this.img.frames = 4
     // this.img.frameIndex = 0
     // this.tick = 0
-
+    this.speechCloud = new SpeechCloud(this.ctx, this.x, this.y)
   }
 
   draw() {
@@ -26,6 +26,7 @@ class Police extends Drawable {
     // 	this.w,
     // 	this.h
     // )
+
   }
 
   move() {
@@ -35,6 +36,16 @@ class Police extends Drawable {
       this.y = this.y0
       this.vy = 0
     }
+  }
+
+  yell() {
+    const x = this.x + this.w / 2
+    const y = this.y - this.speechCloud.h
+
+    this.speechCloud = new SpeechCloud(this.ctx, x, y)
+
+    this.speechCloud.draw()
+
   }
 
 }
