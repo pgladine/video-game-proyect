@@ -14,7 +14,8 @@ class SprayCloud extends Drawable {
     draw() {
         this.ctx.drawImage(this.sprayCloudImg, this.x, this.y, this.w, this.h)
         this.cloudAudio.play()
-        this.cloudAudio.currentTime = 2
+        this.cloudAudio.volume = 0.1
+        // this.cloudAudio.currentTime = 2
         // this.ctx.drawImage(
         //     this.img,
         //     this.img.frameIndex * this.img.width / this.img.frames,

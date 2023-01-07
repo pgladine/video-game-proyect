@@ -33,7 +33,8 @@ class Game {
     this.stop()
     this.initListeners()
     this.gameAudio.play()
-    this.gameAudio.currentTime = 
+    this.gameAudio.volume = 0.1
+    // this.gameAudio.currentTime = 10
 
     this.addGraffitiFrame()
     this.beginInterval()
@@ -217,6 +218,7 @@ class Game {
       this.stop()
       this.gameAudio.pause()
       this.gameOverAudio.play()
+      this.gameOverAudio.volume = 0.1
       showGameOverScreen()
     }, 0)
   }
@@ -226,6 +228,7 @@ class Game {
       this.stop()
       this.gameAudio.pause()
       this.youWinAudio.play()
+      this.youWinAudio.volume = 0.1
       showYouWinScreen()
     }, 700)
   }
