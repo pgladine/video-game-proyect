@@ -8,14 +8,12 @@ class Mario extends Drawable {
     this.floor = this.y
 
     this.img = new Image()
-    this.img.src = 'https://s3-eu-west-1.amazonaws.com/cpm-assets/mario-sprite.png'
-    this.img.frames = 3
+    this.img.src = './assets/img/street-mary-right.png'
+    this.img.frames = 5
     this.img.frameIndex = 0
     this.tick = 0
 
     this.graffitis = [graffiti1, graffiti2, graffiti3, graffiti4, graffiti5, graffiti6]
-
-    this.bullets = []
 
     this.spraysToUse = 0
 
@@ -36,8 +34,6 @@ class Mario extends Drawable {
     )
 
     this.animate()
-
-    // this.bullets.forEach(b => b.draw())
   }
 
   animate() {
@@ -80,8 +76,6 @@ class Mario extends Drawable {
       this.vx = 0
       this.x = this.ctx.canvas.width - this.w
     }
-
-    this.bullets.forEach(b => b.move())
   }
 
   jump() {
@@ -98,13 +92,6 @@ class Mario extends Drawable {
     return this.graffitis[randomIndex]
   }
 
-  shoot() {
-    const x = this.x + this.w
-    const y = this.y + this.h / 2
-    const bullet = new Bullet(this.ctx, x, y)
-    this.bullets.push(bullet)
-  }
-
   hasCollisionWith(item) {
     const colX = (this.x + this.w) >= item.x && (item.x + item.w) >= this.x
     const colY = (item.y + item.h) >= this.y && (this.y + this.h) >= item.y
@@ -115,7 +102,7 @@ class Mario extends Drawable {
   hasHandCollisionWith(item) {
     const colX = (this.x + this.w) > item.x && (this.x + this.w) < (item.x + item.w)
     const colY = (this.y + this.h / 2) > item.y && (this.y + this.h / 2) < (item.y + item.h)
-   
+
     return colX && colY
   }
 

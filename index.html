@@ -9,21 +9,31 @@
   </head>
   <body>
     <div class="container">
-      <canvas id="game" width="600px" height="350px"></canvas>
-      <div class="status-bar">
-        <span class="sprays">x00</span><span class="flowers">x035</span><span class="time">T345</span>
+      <div class="home-screen">
+        <h1>Super peach princess</h1>
+        <button class="start-btn" onclick="startGame()">START</button>
       </div>
-      <div id="mario"></div>
+      <div class="hide-element you-win-screen">
+        <h1>YOU WIN</h1>
+      </div>
+      <div class="hide-element game-over-screen">
+        <h1>GAME OVER</h1>
+      </div>
+      <canvas id="game" width="600px" height="350px" class="hide-element"></canvas>
+      <div class="hide-element status-bar ">
+        <img class="spray-img" src="./assets/img/spray1.png" alt="spray-image">
+        <span class="sprays">00</span>
+      </div>
     </div>
     <script src="./assets/js/models/utils/utils.js"></script>
     <script src="./assets/js/models/base-classes/drawable.js"></script>
     <script src="./assets/js/models/background/background.js"></script>
     <script src="./assets/js/models/tools/wasteBin.js"></script>
     <script src="./assets/js/models/tools/spray-can.js"></script>
-    <script src="./assets/js/models/tools/bullet.js"></script>
     <script src="./assets/js/models/characters/police.js"></script>
     <script src="./assets/js/models/characters/mario.js"></script>
     <script src="./assets/js/models/tools/graffiti-frame.js"></script>
+    <script src="./assets/js/models/tools/cloud.js"></script>
     <script src="./assets/js/models/game/game.js"></script>
     <script src="./assets/js/index.js"></script>
   </body>

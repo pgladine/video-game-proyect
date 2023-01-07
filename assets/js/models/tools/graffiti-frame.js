@@ -9,6 +9,7 @@ class GraffitiFrame extends Drawable {
     if (this.img) {
       this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
     } else {
+      this.ctx.strokeStyle = 'transparent'
       this.ctx.strokeRect(this.x, this.y, this.w, this.h)
     }
   }
