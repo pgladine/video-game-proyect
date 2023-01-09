@@ -5,25 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./assets/styles/style.css" rel="stylesheet" type="text/css" />
-    <title>Mario proyect</title>
+    <title>The Fresh Peach Princess of Ironhack</title>
   </head>
   <body>
     <div class="container">
+
       <div class="home-screen">
-        <h1>Super peach princess</h1>
-        <button class="start-btn" onclick="startGame()">START</button>
+        <h1>
+          <div class="title-span">The</div>
+          Fresh Peach Princess
+          <div class="title-span">of Ironhack</div>
+        </h1>
+
+        <button onclick="startGame()" class="start-btn">ST-ART</button>
+
+        <div class="instructions">
+          <div>
+            <img class="instructions-img" src="./assets/img/right-arrow.png" alt="right-arrow"/> go right
+            <img class="instructions-img" src="./assets/img/left-arrow.png" alt="left-arrow"/>go left
+          </div>
+        </div>
+
+        <div class="instructions">
+          <div>
+            <img class="instructions-img" src="./assets/img/space-bar.png" alt="space-bar"/>jump
+            <img class="instructions-img" src="./assets/img/enter-button.png" alt="enter-key"/>paint
+          </div>
+        </div>
       </div>
+
+      <canvas id="game" width="600px" height="350px" class="hide-element"></canvas>
+
+      <div class="hide-element status-bar">
+        <img class="spray-img" src="./assets/img/spray1.png" alt="spray-image"/>
+        <span class="sprays">00</span>
+      </div>
+
       <div class="hide-element you-win-screen">
         <h1>YOU WIN</h1>
       </div>
+
       <div class="hide-element game-over-screen">
         <h1>GAME OVER</h1>
       </div>
-      <canvas id="game" width="600px" height="350px" class="hide-element"></canvas>
-      <div class="hide-element status-bar ">
-        <img class="spray-img" src="./assets/img/spray1.png" alt="spray-image">
-        <span class="sprays">00</span>
-      </div>
+
     </div>
     <script src="./assets/js/models/utils/utils.js"></script>
     <script src="./assets/js/models/base-classes/drawable.js"></script>
@@ -32,7 +57,7 @@
     <script src="./assets/js/models/tools/spray-can.js"></script>
     <script src="./assets/js/models/tools/speech-cloud.js"></script>
     <script src="./assets/js/models/characters/police.js"></script>
-    <script src="./assets/js/models/characters/mario.js"></script>
+    <script src="./assets/js/models/characters/peach.js"></script>
     <script src="./assets/js/models/tools/graffiti-frame.js"></script>
     <script src="./assets/js/models/tools/spray-cloud.js"></script>
     <script src="./assets/js/models/game/game.js"></script>

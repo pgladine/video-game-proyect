@@ -9,8 +9,4 @@ class SprayCan extends Drawable {
   draw() {
     this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
   }
-
-  // move() {
-  //   super.move()
-  // }
 }

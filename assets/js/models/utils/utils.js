@@ -5,10 +5,10 @@ const LEFT = 37
 const SPACE = 32
 const INTRO = 13
 
-const FLOOR_BOTTOM = 265
-const FLOOR_TOP = 215
+const FLOOR_BOTTOM = 245
+const FLOOR_TOP = 190
 
-// Mario constants
+// Peach constants
 
 const graffiti1 = new Image()
 graffiti1.src = './assets/img/kid-1-1.png'

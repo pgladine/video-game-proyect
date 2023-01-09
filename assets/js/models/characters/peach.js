@@ -1,6 +1,6 @@
-class Mario extends Drawable {
+class Peach extends Drawable {
   constructor(ctx) {
-    super(ctx, 50, FLOOR_BOTTOM, 40, 75, 0, 0, 0, 0.5)
+    super(ctx, 50, FLOOR_BOTTOM, 80, 100, 0, 0, 0, 0.5)
 
     this.y0Bottom = FLOOR_BOTTOM
     this.y0Top = FLOOR_TOP
@@ -8,8 +8,8 @@ class Mario extends Drawable {
     this.floor = this.y
 
     this.img = new Image()
-    this.img.src = './assets/img/street-mary-right.png'
-    this.img.frames = 5
+    this.img.src = './assets/img/girl-sprite-sheet2.png'
+    this.img.frames = 7
     this.img.frameIndex = 0
     this.tick = 0
 
