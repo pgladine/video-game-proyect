@@ -8,19 +8,16 @@ class Peach extends Drawable {
     this.floor = this.y
 
     this.img = new Image()
-    this.img.src = './assets/img/girl-sprite-sheet2.png'
+    this.img.src = './assets/img/girl-sprite-sheet.png'
     this.img.frames = 7
     this.img.frameIndex = 0
     this.tick = 0
-
-    this.graffitis = [graffiti1, graffiti2, graffiti3, graffiti4, graffiti5, graffiti6]
 
     this.spraysToUse = 0
 
   }
 
   draw() {
-    // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
     this.ctx.drawImage(
       this.img,
       this.img.frameIndex * this.img.width / this.img.frames,
@@ -85,11 +82,6 @@ class Peach extends Drawable {
       this.y0Top = 0
       this.floor = this.y
     }
-  }
-
-  chooseGraffiti() {
-    const randomIndex = randomNum(this.graffitis.length)
-    return this.graffitis[randomIndex]
   }
 
   hasCollisionWith(item) {

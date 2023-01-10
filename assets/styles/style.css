@@ -22,36 +22,39 @@ body {
 }
 
 h1 {
-  margin-top: 0;
+  margin-top: 1rem;
   font-family: AttackGraffiti, Arial, Helvetica, sans-serif;
   color: #88ff22;
   font-size: 3.5rem;
   font-weight: 100;
   text-shadow: -5px 3px #ff2299;
-  /* Game-Over
-  color: #FF5525;
-  text-shadow: -5px 3px #222222; 
-  */
+  margin: 2rem 8rem 3rem 0rem
 }
 
-.title-span {
+.title-div {
   font-family: Arial, Helvetica, sans-serif;
-  color: antiquewhite;
-  font-size: 2rem;
-  font-weight: 100;
+  color:darkblue;
+  font-size: 1.5rem;
   font-style: italic;
   text-shadow: -5px 3px #ff2299;
+  margin-right: 18rem;
+}
+.title-div:last-child {
+  font-family: Arial, Helvetica, sans-serif;
+  color: darkblue;
+  font-size: 1.5rem;
+  font-style: italic;
+  text-shadow: -5px 3px #ff2299;
+  margin-right: -13rem;
 }
 
 .instructions {
   font-family: AttackGraffiti, Arial, Helvetica, sans-serif;
-  color: antiquewhite;
+  color:lightgoldenrodyellow;
   font-weight: 100;
   font-size: 1.5rem;
   display: flex;
-  flex-direction: column;
   text-shadow: -5px 3px #ff2299;
-  margin-left: 1rem;
  }
 
 .instructions-img {
@@ -69,6 +72,15 @@ h1 {
   align-self: flex-start;
   margin-left: 5px;
   box-shadow: 3px 5px #ff2299;
+  position: absolute;
+  right:3rem;
+  top: 3rem;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  width: 8.5rem;
+  height: 3rem;
 }
 
 .home-screen {
@@ -79,10 +91,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-image: url("../img/colorful-brick-wall.webp");
-  background-size: cover;
-  background-position: center;
+  justify-content:center;
+  background-image: url("../img/colorful-brick-wall.png");
+  background-size: contain;
+  background-position: bottom;
 }
 
 .you-win-screen {
@@ -95,6 +107,16 @@ h1 {
   align-items: center;
   justify-content: center;
   position: absolute;
+  top: 20px;
+}
+
+.you-win-title {
+  font-family: AttackGraffiti, Arial, Helvetica, sans-serif;
+  color: #88ff22;
+  font-size: 7rem;
+  font-weight: 100;
+  text-shadow: -5px 3px #ff2299;
+  margin: 2rem 6rem 3rem 3rem;
 }
 
 .game-over-screen {
@@ -107,11 +129,23 @@ h1 {
   align-items: center;
   justify-content: center;
   position: absolute;
+  top: 20px;
+}
+
+.game-over-title {
+  font-family: AttackGraffiti, Arial, Helvetica, sans-serif;
+  color: #FF5525;
+  font-size: 5rem;
+  font-weight: 100;
+  text-shadow: -5px 3px #222222;
+  margin: 2rem 6rem 3rem 3rem;
 }
 
 canvas {
   border: 1px solid white;
   border-radius: 4px;
+  /* width: 600px;
+  height: 350px; */
 }
 
 .status-bar {
