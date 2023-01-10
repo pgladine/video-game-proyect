@@ -4,14 +4,16 @@ class Game {
 
     this.interval = null
     this.bg = new Background(ctx)
+    this.wasteBin = new WasteBin(ctx, 500, 200)
     this.peach = new Peach(ctx)
     this.polices = []
     this.graffitiFrames = []
     this.sprayClouds = []
-    this.wasteBin = new WasteBin(ctx, 500, 200)
-    this.tick = 100
     this.sprayCans = []
+    this.graffiti = null
+
     this.paintedParts = 0
+    this.tick = 100
 
     this.gameAudio = new Audio("./assets/audios/sara-socas.mp3")
     this.youWinAudio = new Audio("./assets/audios/fresh-prince.mp3")
@@ -126,16 +128,8 @@ class Game {
   }
 
   addGraffitiFrame() {
-    const positions = [
-      { x: 220, y: 20, imgSrc: graffiti1Src },
-      { x: 300, y: 20, imgSrc: graffiti2Src },
-      { x: 220, y: 100, imgSrc: graffiti3Src },
-      { x: 300, y: 100, imgSrc: graffiti4Src },
-      { x: 220, y: 180, imgSrc: graffiti5Src },
-      { x: 300, y: 180, imgSrc: graffiti6Src },
-    ]
-
-    this.graffitiFrames = positions.map(position => new GraffitiFrame(this.ctx, position.x, position.y, position.imgSrc))
+    this.graffiti = GRAFFITIS[randomNum(GRAFFITIS.length - 1)]
+    this.graffitiFrames = this.graffiti.map(position => new GraffitiFrame(this.ctx, position.x, position.y, position.imgSrc))
   }
 
   paintGraffiti() {
@@ -151,7 +145,7 @@ class Game {
         this.updateSprays()
       }
     })
-    if (this.paintedParts === 6) {
+    if (this.paintedParts === this.graffiti.length) {
       this.youWin()
     }
   }

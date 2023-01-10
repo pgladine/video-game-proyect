@@ -33,7 +33,7 @@ h1 {
 
 .title-div {
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color:darkblue;
   font-size: 1.5rem;
   font-style: italic;
   text-shadow: -5px 3px #ff2299;
@@ -41,7 +41,7 @@ h1 {
 }
 .title-div:last-child {
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: darkblue;
   font-size: 1.5rem;
   font-style: italic;
   text-shadow: -5px 3px #ff2299;
@@ -50,7 +50,7 @@ h1 {
 
 .instructions {
   font-family: AttackGraffiti, Arial, Helvetica, sans-serif;
-  color:#222222;
+  color:lightgoldenrodyellow;
   font-weight: 100;
   font-size: 1.5rem;
   display: flex;

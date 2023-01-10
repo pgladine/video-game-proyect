@@ -8,7 +8,7 @@ class Peach extends Drawable {
     this.floor = this.y
 
     this.img = new Image()
-    this.img.src = './assets/img/girl-sprite-sheet2.png'
+    this.img.src = './assets/img/girl-sprite-sheet.png'
     this.img.frames = 7
     this.img.frameIndex = 0
     this.tick = 0
