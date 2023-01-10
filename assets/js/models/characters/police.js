@@ -9,6 +9,8 @@ class Police extends Drawable {
     this.img.frames = 5
     this.img.frameIndex = 4
     this.tick = 0
+    
+    // si no se crea (con el new) en el constructor no funciona yell.
     this.speechCloud = new SpeechCloud(this.ctx, this.x, this.y)
   }
 
@@ -29,7 +31,7 @@ class Police extends Drawable {
   }
 
   animate() {
-    if (this.tick++ > 28) {
+    if (this.tick++ > 10) {
       this.tick = 0
       this.img.frameIndex--
 

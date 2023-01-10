@@ -16,7 +16,7 @@ class Game {
     this.gameAudio = new Audio("./assets/audios/sara-socas.mp3")
     this.youWinAudio = new Audio("./assets/audios/fresh-prince.mp3")
     this.gameOverAudio = new Audio("./assets/audios/massive-attack.mp3")
-  
+
   }
 
   beginInterval() {
@@ -42,16 +42,6 @@ class Game {
 
   stop() {
     clearInterval(this.interval)
-  }
-
-  initListeners() {
-    document.onkeydown = (event) => {
-      this.handleKeyDown(event.keyCode)
-    }
-
-    document.onkeyup = (event) => {
-      this.handleKeyUp(event.keyCode)
-    }
   }
 
   handleKeyDown(key) {
@@ -96,13 +86,23 @@ class Game {
     }
   }
 
+  initListeners() {
+    document.onkeydown = (event) => {
+      this.handleKeyDown(event.keyCode)
+    }
+
+    document.onkeyup = (event) => {
+      this.handleKeyUp(event.keyCode)
+    }
+  }
+
   draw() {
     this.bg.draw()
     this.graffitiFrames.forEach(g => g.draw())
     this.peach.draw()
+    this.sprayClouds.forEach(c => c.draw())
     this.wasteBin.draw()
     this.polices.forEach(p => p.draw())
-    this.sprayClouds.forEach(c => c.draw())
     this.sprayCans.forEach(s => s.draw())
   }
 
@@ -125,6 +125,19 @@ class Game {
     this.sprayCans = this.sprayCans.filter(s => s.isVisible())
   }
 
+  addGraffitiFrame() {
+    const positions = [
+      { x: 220, y: 20, imgSrc: graffiti1Src },
+      { x: 300, y: 20, imgSrc: graffiti2Src },
+      { x: 220, y: 100, imgSrc: graffiti3Src },
+      { x: 300, y: 100, imgSrc: graffiti4Src },
+      { x: 220, y: 180, imgSrc: graffiti5Src },
+      { x: 300, y: 180, imgSrc: graffiti6Src },
+    ]
+
+    this.graffitiFrames = positions.map(position => new GraffitiFrame(this.ctx, position.x, position.y, position.imgSrc))
+  }
+
   paintGraffiti() {
     this.graffitiFrames.forEach(graffitiFrame => {
       if (this.peach.hasHandCollisionWith(graffitiFrame) && this.peach.spraysToUse > 0 && graffitiFrame.img === null) {
@@ -143,20 +156,15 @@ class Game {
     }
   }
 
-  addGraffitiFrame() {
-    const positions = [
-      { x: 220, y: 20 },
-      { x: 300, y: 20 },
-      { x: 220, y: 100 },
-      { x: 300, y: 100 },
-      { x: 220, y: 180 },
-      { x: 300, y: 180 },
-    ]
-
-    this.graffitiFrames = positions.map(position => new GraffitiFrame(this.ctx, position.x, position.y))
+  // TODO: REVISAR FRECUENCIA DE APARICIÓN DE SPRAYS Y POLIS
+  addSpray() {
+    this.sprayCans.push(new SprayCan(this.ctx, 10 + randomNum(this.ctx.canvas.width - 10)))
   }
 
-  // TODO: REVISAR FRECUENCIA DE APARICIÓN DE SPRAYS Y POLIS
+  addPolice() {
+    this.polices.push(new Police(this.ctx))
+  }
+
   addThings() {
     this.tick--
 
@@ -168,14 +176,6 @@ class Game {
       this.addPolice()
       this.tick = 600 + randomNum(40)
     }
-  }
-
-  addSpray() {
-    this.sprayCans.push(new SprayCan(this.ctx, 10 + randomNum(this.ctx.canvas.width - 10)))
-  }
-
-  addPolice() {
-    this.polices.push(new Police(this.ctx))
   }
 
   checkCollisions() {
@@ -234,5 +234,4 @@ class Game {
       showYouWinScreen()
     }, 700)
   }
-
 }
