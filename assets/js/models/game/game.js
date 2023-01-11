@@ -128,7 +128,7 @@ class Game {
   }
 
   addGraffitiFrame() {
-    this.graffiti = GRAFFITIS[randomNum(GRAFFITIS.length - 1)]
+    this.graffiti = GRAFFITIS[randomNum(GRAFFITIS.length)]
     this.graffitiFrames = this.graffiti.map(position => new GraffitiFrame(this.ctx, position.x, position.y, position.imgSrc))
   }
 
